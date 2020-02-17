@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 import subprocess
-result = subprocess.run(['ip', 'link'], stdout=subprocess.PIPE)
-print(result.stdout.decode('utf-8'))
+result = subprocess.run(['ip -br addr|cut -d" " -f1'], stdout=subprocess.PIPE)
 
-
+interfaceList = result.stdout.decode('utf-8').splitlines())
