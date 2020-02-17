@@ -2,7 +2,7 @@
 import os
 import subprocess
 
-def Select_Interface(interfaceList):
+def Select_Interface():
   interfaceList = os.listdir('/sys/class/net/')
   interfaceList.remove('lo')
   for num, name in enumerate(interfaceList):
