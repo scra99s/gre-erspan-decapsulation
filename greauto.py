@@ -1,16 +1,11 @@
 #!/usr/bin/env python3
-
-import subprocess
 import os
+import subprocess
+
+def Print_Interfaces(interfaceList):
+  for num, name in enumerate(interfaceList):
+    print("%d) %s" % (num, name))
 
 interfaceList = os.listdir('/sys/class/net/')
 interfaceList.remove('lo')
-print(interfaceList)
-
-
-#result = subprocess.run(['ip -br addr|cut -d" " -f1'], stdout=subprocess.PIPE)
-
-#interfaceList = result.stdout.decode('utf-8').splitlines()
-#interfaceList.remove('lo')
-
-#print(interfaceList)
+Print_Interfaces(interfaceList)
