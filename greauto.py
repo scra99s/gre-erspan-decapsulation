@@ -3,8 +3,8 @@ import os
 import subprocess
 
 def Select_Interface(interfaceList = []):
-  interfaceNum = None
-  while interfaceNum == None:
+
+  while True:
     for num, name in enumerate(interfaceList):
       print(" %d) %s" % (num, name))
     interfaceNum = input('Please Select an interface for input:') 
