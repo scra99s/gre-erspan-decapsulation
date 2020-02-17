@@ -14,4 +14,4 @@ def Select_Interface(interfaceList):
   else:
     print('Invalid input!')
 
-Select_Interface(interfaceList)
+Select_Interface()
