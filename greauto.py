@@ -11,7 +11,7 @@ def Select_Interface(interfaceList):
   if isinstance(interfaceNum, int):
     if interfaceNum >= 0 and interfaceNum <= interfaceList.len():
       happy
-  else
+  else:
     print('Invalid input!')
 
 Select_Interface(interfaceList)
