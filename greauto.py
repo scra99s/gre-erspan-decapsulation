@@ -3,7 +3,7 @@
 import subprocess
 import os
 
-interfaceList = os.listdir('/sys/class/net/').splitlines()
+interfaceList = os.listdir('/sys/class/net/')
 interfaceList.remove('lo')
 print(interfaceList)
 
