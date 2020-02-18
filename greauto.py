@@ -2,11 +2,11 @@
 import os
 import subprocess
 import ipaddress
-from pyroute2 import IPRoute
 from pyroute2 import IPDB
+from pyroute2 import IPRoute
 
 class greauto:
-  
+
   def __init__(self):
     self.ipdb = IPDB(mode='explicit')
     self.interfaceList = self._Get_Interfaces()
@@ -15,9 +15,18 @@ class greauto:
     #self.localGateway = self._Set_Local_Gateway()
     #self.ouputInterface = self._Set_Output_Interface()
 
-  def Init_Interfaces(self):
-    for interface in self.interfaceList:
-      print(self.ipdp.interfaces[interface])
+
+  def Clear_Interfaces(self):
+    #Disable all interfaces and clear
+    for interface in self.ipdb.by_name.keys():
+      if interface != 'lo':
+        self.ipdb.interfaces[interface].begin()
+        self.ipdb.interfaces[interface].down()
+        for ip in self.ipdb.interfaces[interface]['ipaddr']:
+          print('Deleting ' + ip[0] + ' on ' + interface)
+          self.ipdb.interfaces[interface].del_ip(ip[0], ip[1])
+        self.ipdb.interfaces[interface].commit()
+    self.ipdb.release()
 
 
   def _Set_Local_Gateway(self):
@@ -81,4 +90,5 @@ class greauto:
 
 if __name__ == "__main__":
   grespan = greauto()
-  grespan.Init_Interfaces()
+  grespan.Clear_Interfaces()
+
